@@ -10,25 +10,26 @@
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-    
-        ListNode sentinel = new ListNode(0, head);
-        ListNode pred = sentinel;
+        //make a dummy/Sentinel node to omit all the base conditions and 
+        //point the next of dummy to head of given node
+        ListNode dummy = new ListNode(0 , head);
+        //Make a node previous to store the last distinct value that
+        //we have found
+        ListNode previous = dummy;
         
-        while (head != null) {
-            if (head.next != null && head.val == head.next.val) {
-                
-                while (head.next != null && head.val == head.next.val){
-                    head = head.next;    
+        while(head != null){
+            if((head.next !=null) && head.val == head.next.val){
+                //skipping the entire duplicate sublist
+                while(head.next!=null && head.val == head.next.val){
+                    head = head.next;
                 }
-                
-                pred.next = head.next;     
-            
-            } else {
-                pred = pred.next;    
+                previous.next = head.next;
             }
-            
-            head = head.next;    
-        }  
-        return sentinel.next;
+            else{
+                previous = previous.next;
+            }
+            head = head.next;
+        }
+        return dummy.next;
     }
 }
