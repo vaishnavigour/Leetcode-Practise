@@ -24,8 +24,8 @@ class Solution {
         k= k%n;
         while(k>0){
             ListNode curr =head;
-            if(curr.next ==null)
-                return curr;
+            // if(curr.next ==null)
+            //     return curr;
             while(curr.next.next !=null){
                 curr = curr.next;
             }
