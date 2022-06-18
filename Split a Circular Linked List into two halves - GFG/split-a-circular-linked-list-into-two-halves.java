@@ -137,8 +137,8 @@ class gfg
             
             list.head1 =list.head;
             list.head2 = slow.next;
-            Node temp = slow.next;
+
             slow.next =list.head;
-            fast.next = temp;
+            fast.next =list.head2;
 	 }
 }
