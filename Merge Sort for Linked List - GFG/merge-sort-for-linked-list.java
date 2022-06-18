@@ -73,9 +73,9 @@ class Node
 class Solution
 {
     //Function to sort the given linked list using Merge Sort.
-    static Node middleNode(Node hi){
-        Node slow = hi;
-        Node fast = hi.next;
+    static Node middleNode(Node head){
+        Node slow = head;
+        Node fast = head.next;
         while(fast!=null && fast.next !=null){
             fast= fast.next.next;
             slow = slow.next;
@@ -87,12 +87,12 @@ class Solution
         Node temp = ans;
         while(head1!=null && head2!=null){
             if(head1.data <=head2.data){
-                temp.next = new Node(head1.data);
+                temp.next = head1;
                 head1 = head1.next;
                 temp = temp.next;
             }
             else{
-                temp.next= new Node(head2.data);
+                temp.next= head2;
                 head2 = head2.next;
                 temp = temp.next;
             }
@@ -107,7 +107,7 @@ class Solution
             temp = temp.next;
             head2 = head2.next;
         }
-        temp.next= null;
+        
             
         return ans.next;
     }
