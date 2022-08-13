@@ -18,15 +18,10 @@ class Solution {
         if(root==null)
             return false;
         sum += root.val;
-        if(root.left == null && root.right == null){
-            if(sum ==t)
-                return true;
-            return false;
-        } 
+        if(root.left == null && root.right == null)
+           return sum==t;
         
-        boolean left = f(root.left,t,sum);
-        boolean right = f(root.right,t,sum);
-        return left||right;
+        return f(root.left,t,sum)||f(root.right,t,sum);
     }
     public boolean hasPathSum(TreeNode root, int targetSum) {
         int sum =0;
