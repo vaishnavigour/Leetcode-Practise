@@ -15,14 +15,10 @@
  */
 class Solution {
     public boolean check(TreeNode r1 , TreeNode r2){
-        if(r1 ==null && r2==null)
-            return true;
-        if(r2==null || r1==null)
-            return false;
+        if(r1==null || r2==null)
+            return r1 ==null && r2==null;
         if(r1.val == r2.val){
-        boolean left = check(r1.left , r2.left);
-        boolean right = check(r1.right , r2.right);
-            return left &&right;
+            return check(r1.left , r2.left) && check(r1.right , r2.right);
         }
         return false;
     }
@@ -30,9 +26,7 @@ class Solution {
          if(root!=null){
             if(check(root,subRoot)==true)
                 return true;
-            boolean l = isSubtree(root.left , subRoot);
-            boolean r = isSubtree(root.right, subRoot);
-             return (l || r);
+        return(isSubtree(root.left , subRoot)|| isSubtree(root.right, subRoot));
          }
         return false;
     }
