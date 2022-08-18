@@ -6,30 +6,16 @@ class Solution {
         return;
     }
     public void nextPermutation(int[] nums) {
-        boolean c = true;
-        for(int i=0; i<nums.length-1; i++){
-            if(nums[i]<nums[i+1])
-                c = false;
+        int i = nums.length-2;
+        while(i>=0 && nums[i]>=nums[i+1]){
+            i--;
         }
-        if(c==true){
-            Arrays.sort(nums);
-            return;
+        if(i>=0){
+            int j= nums.length-1;
+            while(j>i && nums[j]<=nums[i])
+                j--;
+            swap(i,j,nums);
         }
-        
-        int r = nums.length-1;
-        while(r>0){
-            if(nums[r]>nums[r-1])
-                break;
-            else
-                r--;
-        }
-        r=r-1;
-        for(int k=nums.length-1 ; k>r;k--){
-            if(nums[k]>nums[r]){
-                swap(k,r,nums);
-                break;
-            }
-        }
-        Arrays.sort(nums , r+1,nums.length);
+        Arrays.sort(nums , i+1,nums.length);
     }
 }
