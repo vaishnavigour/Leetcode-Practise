@@ -1,50 +1,50 @@
 class Solution {
-
-    public int mergesort(int[] arr, int l, int h){
-        if(l>=h)
+    public int  merge(int[] arr,int l, int r ){
+         if(l>=r)
             return 0;
-        int m=(l+h)/2;
-        int res=0;
-        res += mergesort(arr,l,m);
-        res += mergesort(arr,m+1, h);
-        res += merge(arr,l,m,h);
-        
-        return res;
+        int cnt =0;
+        int mid = (l+r)/2;
+            
+        cnt += merge(arr,l,mid);
+        cnt += merge(arr,mid+1,r);
+        cnt += countandmerge(arr,l,mid,r);
+            
+        return cnt;
     }
-    public int merge(int[] arr , int l ,int m , int h){
-        
-        int res=0;
-        int j = m + 1; 
-        for(int i = l;i<=m;i++) {
-            while(j<=h && arr[i] > (2 *(long)arr[j])) {
+    public int countandmerge(int[] arr,int l , int mid, int r){
+        int count =0;
+        int j = mid+1,i=l;
+        for(i = l;i<=mid;i++) {
+            while(j<=r && arr[i] > (2 *(long)arr[j])) {
                 j++;
             }
-            res += (j - (m+1));
+            count  += (j - (mid+1));
         }
-        
-        int i=l;
-        j =m+1;
+        i =l;
+        j=mid+1 ;
         ArrayList<Integer> a= new ArrayList<Integer>();
-        while(i<=m && j<=h){
+        while(i<=mid && j<=r){
             if(arr[i]<=arr[j]){
                 a.add(arr[i++]);
             }
             else{
-                a.add(arr[j++]);
+                a.add(arr[j]);
+                j++;
             }
         }
-        while(i<=m){
+        while(i<=mid){
             a.add(arr[i++]);
         }
-        while(j<=h){
+        while(j<=r){
             a.add(arr[j++]);
         }
-        for( i = l; i<=h;i++) {
-            arr[i] = a.get(i - l); 
+        for(i=l;i<=r; i++){
+            arr[i] =a.get(i-l);
         }
-        return res;
+        return count;
+        
     }
     public int reversePairs(int[] nums) {
-        return mergesort(nums,0,nums.length-1);
+        return merge(nums , 0,nums.length-1);
     }
 }
