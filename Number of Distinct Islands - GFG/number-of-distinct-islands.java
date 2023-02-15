@@ -33,14 +33,6 @@ class GFG {
 
 
 // User function Template for Java
-class Pair{
-    int first;
-    int second;
-    Pair(int x,int y){
-        first = x;
-        second = y;
-    }
-}
 class Solution {
     public String toString(int i,int j){
         return Integer.toString(i)+" "+Integer.toString(j);
